@@ -1,0 +1,36 @@
+#!/bin/bash
+
+function send_notification() {
+    out=$(wpctl get-volume @DEFAULT_AUDIO_SINK@)
+
+    muted=false
+    echo "$out" | grep -q "\[MUTED\]" && muted=true
+
+    vol=$(echo "$out" | awk '{print $2}')
+    int=$(printf "%.0f\n" "$(echo "$vol * 100" | bc -l)")
+
+    if $muted; then
+        dunstify "Volume: Muted" -h int:value:0 -r 2
+    else
+        dunstify "Volume: $int" -h int:value:"$int" -r 2
+    fi
+}
+
+case $1 in
+    "up")
+        wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+        send_notification
+        ;;
+    "down")
+        wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+        send_notification
+        ;;
+    "mute")
+        wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+        send_notification
+        ;;
+
+    *)
+        notify-send "Unknown"
+        ;;
+esac

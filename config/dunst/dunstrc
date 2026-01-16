@@ -1,0 +1,36 @@
+[global]
+    width = 400
+    offset = (5, 5)
+    progress_bar_min_width = 380
+    progress_bar_max_width = 380
+    progress_bar_corner_radius = 2
+    padding = 10
+    horizontal_padding = 10
+    frame_width = 1
+    gap_size = 3
+    font = "FantasqueSansM Nerd Font Propo 14"
+    enable_recursive_icon_lookup = true
+    background = "#282828"
+    foreground = "#ebdbb2"
+    icon_theme = "Gruvbox"
+
+[urgency_low]
+    background = "#3c3836"
+    highlight = "#458588"
+    frame_color = "#458588"
+    default_icon = "dialog-information"
+    format = "<b><span foreground='#458588'>%s</span></b>\n%b"
+
+[urgency_normal]
+    background = "#3c3836"
+    highlight = "#d79921"
+    frame_color = "#d79921"
+    default_icon = "dialog-warning"
+    format = "<b><span foreground='#d79921'>%s</span></b>\n%b"
+
+[urgency_critical]
+    background = "#3c3836"
+    highlight = "#cc241d"
+    frame_color = "#cc241d"
+    default_icon = "dialog-error"
+    format = "<b><span foreground='#cc241d'>%s</span></b>\n%b"

@@ -1,0 +1,22 @@
+#!/bin/bash
+METHOD_NAME="\_SB.PCI0.LPC0.EC0.GZ44"
+ACPI_CALL_PATH="/proc/acpi/call"
+acpi_listen | while read -r line; do
+    if [[ "$line" == *"000000d5"* ]]; then
+        result=$(doas /usr/local/bin/acpi_write "$METHOD_NAME") 
+        case "$result" in
+            "0x0") 
+            notify-send "Intelligent Cooling Mode" "Balance is Everything" -r 3
+            ;;
+        "0x1")
+            notify-send "Performance Mode" "I AM POWER" -r 3
+            ;;
+        "0x2")
+            notify-send "Quiet Mode" "Pin Drop Silence" -r 3
+            ;;
+        *)
+            notify-send "Unknown Mode" "Where have I ended up?" -r 3
+            ;;
+        esac
+    fi
+done

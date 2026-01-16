@@ -1,0 +1,24 @@
+#!/bin/bash
+
+case $1 in
+    "save")
+        timestamp=$(date +%Y-%m-%d_%H-%M-%S)
+        if [[ $2 = "full" ]]; then
+            scrot "/home/knight/Pictures/Screenshots/screenshot_$timestamp.png"
+            notify-send "Saved the screenshot"
+        else
+            scrot -s "/home/knight/Pictures/Screenshots/screenshot_$timestamp.png"
+            notify-send "Saved the region screenshot"
+        fi
+        ;;
+    "copy")
+        if [[ $2 = "full" ]]; then
+            scrot - | xclip -selection clipboard -t image/png
+            notify-send "Copied the screenshot"
+        else
+            scrot -s - | xclip -selection clipboard -t image/png
+            notify-send "Copied the regional screenshot"
+        fi
+        ;;
+esac
+
