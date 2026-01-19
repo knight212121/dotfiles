@@ -1,0 +1,15 @@
+#!/bin/bash
+
+choice=$(echo -e "Poweroff\nRestart\nLogout" | dmenu -i)
+
+case $choice in
+    "Poweroff")
+        loginctl poweroff
+        ;;
+    "Restart")
+        loginctl reboot
+        ;;
+    "Logout")
+        loginctl terminal-session $XDG_SESSION_ID
+        ;;
+esac
