@@ -77,12 +77,22 @@ static const char *brightnessdown[] = { "/home/knight/.local/bin/brightness", "d
 static const char *volumeup[] = { "/home/knight/.local/bin/volume", "up", NULL };
 static const char *volumedown[] = { "/home/knight/.local/bin/volume", "down", NULL };
 static const char *volumemute[] = { "/home/knight/.local/bin/volume", "mute", NULL };
+static const char *savefullscreenshot[] = { "/home/knight/.local/bin/screenshot", "save", "full", NULL };
+static const char *copyfullscreenshot[] = { "/home/knight/.local/bin/screenshot", "copy", "full", NULL };
+static const char *saveregionscreenshot[] = { "/home/knight/.local/bin/screenshot", "save", NULL };
+static const char *copyregionscreenshot[] = { "/home/knight/.local/bin/screenshot", "copy", NULL };
+static const char *powermenu[] = { "/home/knight/.local/bin/powermenu", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_r,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
     { MODKEY,                       XK_b,      spawn,          {.v = browsercmd } },
+    { ControlMask,                  XK_Print,  spawn,          {.v = copyregionscreenshot } },
+    { Mod1Mask,                     XK_Print,  spawn,          {.v = copyfullscreenshot } },
+    { ControlMask|ShiftMask,        XK_Print,  spawn,          {.v = saveregionscreenshot } },
+    { Mod1Mask|ShiftMask,           XK_Print,  spawn,          {.v = savefullscreenshot } },
+    { Mod4Mask|ControlMask,         XK_Delete, spawn,          {.v = powermenu } },
 	{ MODKEY,                       XK_t,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },

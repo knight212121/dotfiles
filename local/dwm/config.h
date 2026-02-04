@@ -81,6 +81,7 @@ static const char *savefullscreenshot[] = { "/home/knight/.local/bin/screenshot"
 static const char *copyfullscreenshot[] = { "/home/knight/.local/bin/screenshot", "copy", "full", NULL };
 static const char *saveregionscreenshot[] = { "/home/knight/.local/bin/screenshot", "save", NULL };
 static const char *copyregionscreenshot[] = { "/home/knight/.local/bin/screenshot", "copy", NULL };
+static const char *powermenu[] = { "/home/knight/.local/bin/powermenu", NULL };
 
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -91,6 +92,7 @@ static const Key keys[] = {
     { Mod1Mask,                     XK_Print,  spawn,          {.v = copyfullscreenshot } },
     { ControlMask|ShiftMask,        XK_Print,  spawn,          {.v = saveregionscreenshot } },
     { Mod1Mask|ShiftMask,           XK_Print,  spawn,          {.v = savefullscreenshot } },
+    { Mod1Mask|ControlMask,         XK_Delete, spawn,          {.v = powermenu } },
 	{ MODKEY,                       XK_t,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
